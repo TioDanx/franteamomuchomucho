@@ -1,0 +1,75 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: user is authenticated
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    // Helper: user belongs to this couple
+    function isMember(coupleId) {
+      return isAuth() &&
+        request.auth.uid in get(/databases/$(database)/documents/couples/$(coupleId)).data.members;
+    }
+
+    // Helper: user is owner of this couple
+    function isOwner(coupleId) {
+      return isMember(coupleId) &&
+        get(/databases/$(database)/documents/couples/$(coupleId)).data.roles[request.auth.uid] == "owner";
+    }
+
+    // Users: each user can only read/write their own doc
+    match /users/{uid} {
+      allow read, write: if isAuth() && request.auth.uid == uid;
+    }
+
+    // Invites: anyone can read (invite links are public); only members can create; joining user can mark usedBy
+    match /invites/{code} {
+      allow read: if true;
+      allow create: if isAuth() && request.auth.uid == request.resource.data.createdBy && isMember(request.resource.data.coupleId);
+      allow update: if isAuth() && resource.data.usedBy == null;
+    }
+
+    // Helper: user is joining this couple (not yet a member, but will be after the write)
+    function isJoining(coupleId) {
+      return isAuth() &&
+        !(request.auth.uid in resource.data.members) &&
+        request.auth.uid in request.resource.data.members;
+    }
+
+    // Couples: members can read; only members can update their own couple
+    match /couples/{coupleId} {
+      // Non-members can read only when joining (need to validate invite first)
+      allow read: if isMember(coupleId) || isJoining(coupleId);
+      allow create: if isAuth();
+      // Members can update freely; joining users can only add themselves
+      allow update: if isMember(coupleId) || isJoining(coupleId);
+
+      // Activities subcollection
+      match /activities/{activityId} {
+        allow read, write: if isMember(coupleId);
+
+        // Reviews subcollection: each user writes only their own review
+        match /reviews/{uid} {
+          allow read: if isMember(coupleId);
+          allow write: if isMember(coupleId) && request.auth.uid == uid;
+        }
+
+        // Gallery subcollection
+        match /gallery/{photoId} {
+          allow read: if isMember(coupleId);
+          allow create: if isMember(coupleId);
+          allow delete: if isMember(coupleId) &&
+            resource.data.uploadedBy == request.auth.uid;
+        }
+      }
+
+      // Config subcollection: any member can read/write countdown
+      match /config/{docId} {
+        allow read, write: if isMember(coupleId);
+      }
+    }
+  }
+}

@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─────────────────────────────────────────────
+   Design tokens — dark mode (default)
+   Palette extracted from Stitch reference screens
+───────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts */
+  --font-serif:    "Cormorant Garamond", "Noto Serif", serif;
+  --font-sans:     "Manrope", "DM Sans", sans-serif;
+
+  /* Border radius */
+  --radius:        1rem;
+  --radius-lg:     2rem;
+  --radius-xl:     3rem;
+
+  /* Surface */
+  --color-background:                #16111c;
+  --color-surface:                   #16111c;
+  --color-surface-dim:               #16111c;
+  --color-surface-bright:            #3d3742;
+  --color-surface-container-lowest:  #110c16;
+  --color-surface-container-low:     #1f1924;
+  --color-surface-container:         #231d28;
+  --color-surface-container-high:    #2e2833;
+  --color-surface-container-highest: #39323e;
+  --color-surface-variant:           #39323e;
+  --color-surface-tint:              #ffb1c2;
+
+  /* On-surface */
+  --color-on-background:             #eadfee;
+  --color-on-surface:                #eadfee;
+  --color-on-surface-variant:        #e1bec4;
+
+  /* Outline */
+  --color-outline:                   #a8898e;
+  --color-outline-variant:           #594045;
+
+  /* Primary — rose */
+  --color-primary:                   #ffb1c2;
+  --color-primary-fixed:             #ffd9df;
+  --color-primary-fixed-dim:         #ffb1c2;
+  --color-primary-container:         #c2185b;
+  --color-on-primary:                #66002b;
+  --color-on-primary-fixed:          #3f0018;
+  --color-on-primary-fixed-variant:  #8f003f;
+  --color-on-primary-container:      #ffd9df;
+  --color-inverse-primary:           #b90c55;
+
+  /* Secondary — amber */
+  --color-secondary:                 #eec068;
+  --color-secondary-fixed:           #ffdea6;
+  --color-secondary-fixed-dim:       #eec068;
+  --color-secondary-container:       #755400;
+  --color-on-secondary:              #412d00;
+  --color-on-secondary-fixed:        #271900;
+  --color-on-secondary-fixed-variant:#5d4200;
+  --color-on-secondary-container:    #f9ca71;
+
+  /* Tertiary — lavender */
+  --color-tertiary:                  #d2bdf7;
+  --color-tertiary-fixed:            #ebddff;
+  --color-tertiary-fixed-dim:        #d2bdf7;
+  --color-tertiary-container:        #6d5c8f;
+  --color-on-tertiary:               #382757;
+  --color-on-tertiary-fixed:         #221140;
+  --color-on-tertiary-fixed-variant: #4f3e6f;
+  --color-on-tertiary-container:     #ebddff;
+
+  /* Error */
+  --color-error:                     #ffb4ab;
+  --color-error-container:           #93000a;
+  --color-on-error:                  #690005;
+  --color-on-error-container:        #ffdad6;
+
+  /* Inverse */
+  --color-inverse-surface:           #eadfee;
+  --color-inverse-on-surface:        #342e39;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─────────────────────────────────────────────
+   Light mode overrides (via .light class on <html>)
+───────────────────────────────────────────── */
+.light {
+  --color-background:                #fffbff;
+  --color-surface:                   #fffbff;
+  --color-surface-dim:               #e4d8e4;
+  --color-surface-bright:            #fffbff;
+  --color-surface-container-lowest:  #ffffff;
+  --color-surface-container-low:     #f4eef4;
+  --color-surface-container:         #eee8ee;
+  --color-surface-container-high:    #e8e3e8;
+  --color-surface-container-highest: #e3dde3;
+  --color-surface-variant:           #f3dde2;
+  --color-on-background:             #1d1b1e;
+  --color-on-surface:                #1d1b1e;
+  --color-on-surface-variant:        #514347;
+  --color-outline:                   #837378;
+  --color-outline-variant:           #d6c2c6;
+  --color-primary:                   #b90c55;
+  --color-primary-container:         #ffd9df;
+  --color-on-primary:                #ffffff;
+  --color-on-primary-container:      #3f0018;
+  --color-secondary:                 #755400;
+  --color-secondary-container:       #ffdea6;
+  --color-on-secondary:              #ffffff;
+  --color-on-secondary-container:    #271900;
+  --color-tertiary:                  #5c4b7a;
+  --color-tertiary-container:        #ebddff;
+  --color-on-tertiary:               #ffffff;
+  --color-on-tertiary-container:     #221140;
+  --color-inverse-surface:           #322f37;
+  --color-inverse-on-surface:        #f4eef4;
+  --color-inverse-primary:           #ffb1c2;
+}
+
+/* ─────────────────────────────────────────────
+   Base styles
+───────────────────────────────────────────── */
+html {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+}
+
+/* Film grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hide scrollbar for tab navs */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Glass card utility */
+.glass-card {
+  background: rgba(31, 25, 36, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }

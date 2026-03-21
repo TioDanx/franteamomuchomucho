@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;family=Cormorant+Garamond:wght@400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#d2bdf7",
+                        "on-primary-container": "#ffd9df",
+                        "surface-container-high": "#2e2833",
+                        "on-tertiary-fixed": "#221140",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "on-surface-variant": "#e1bec4",
+                        "surface-container-lowest": "#110c16",
+                        "inverse-primary": "#b90c55",
+                        "on-primary-fixed-variant": "#8f003f",
+                        "surface-container": "#231d28",
+                        "on-secondary-fixed": "#271900",
+                        "primary-fixed-dim": "#ffb1c2",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#342e39",
+                        "on-surface": "#eadfee",
+                        "tertiary": "#d2bdf7",
+                        "surface-container-highest": "#39323e",
+                        "on-primary": "#66002b",
+                        "on-tertiary": "#382757",
+                        "surface-dim": "#16111c",
+                        "on-secondary": "#412d00",
+                        "tertiary-container": "#6d5c8f",
+                        "secondary-fixed": "#ffdea6",
+                        "on-primary-fixed": "#3f0018",
+                        "background": "#16111c",
+                        "surface-variant": "#39323e",
+                        "on-background": "#eadfee",
+                        "primary-fixed": "#ffd9df",
+                        "outline": "#a8898e",
+                        "secondary-fixed-dim": "#eec068",
+                        "on-tertiary-fixed-variant": "#4f3e6f",
+                        "primary": "#ffb1c2",
+                        "surface-tint": "#ffb1c2",
+                        "secondary-container": "#755400",
+                        "inverse-surface": "#eadfee",
+                        "outline-variant": "#594045",
+                        "surface": "#16111c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#f9ca71",
+                        "primary-container": "#c2185b",
+                        "surface-bright": "#3d3742",
+                        "on-tertiary-container": "#ebddff",
+                        "secondary": "#eec068",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1f1924",
+                        "tertiary-fixed": "#ebddff"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"],
+                        "serif-alt": ["Cormorant Garamond"],
+                        "sans-alt": ["DM Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .grainy-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.02;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDWFiKs0AZLLDbGY9JQ9eWCHTwoQsDg4QFTwjODTsWTRkPkKCTbmC06RdEt42MH5QhrOnQLDlsR8Nu8_9rfHxOnyEWt5UD2LybGtGZ2sBmldR2U5yM8rATN5uB0zcCPVxkb5VycHAKfLFqnQHNvtFFwiWJJiLtP0DibrW2IxU6bncNw1T3ZHBi85GutvtX0d8-Zv6VkbVqXe60faVbKSfFX_SIoas_wxQevClFTO0JJsnOiVfaRuCf7hoMENyZmVE1Gd-A7TUeY6RU)
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen pb-32 overflow-x-hidden">
+<div class="grainy-overlay"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#16111C]/80 backdrop-blur-xl shadow-[0px_20px_40px_rgba(255,177,194,0.08)]">
+<h1 class="font-serif-alt italic font-bold text-2xl tracking-tight text-[#C2185B] dark:text-[#FFB1C2]">Nuestros Planes</h1>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 bg-surface-container-highest px-3 py-1.5 rounded-full border border-outline-variant/15">
+<span class="text-sm font-medium font-sans-alt">Dani 💙</span>
+<img alt="User profile photo" class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZU_Rb63M9-Y_OFEQtE1QtAXQ6_w6F3QIACdKF__EFBA1eyMNauHTXPKDX_kQgZemyloJpq50AWmCE9JMtkzEvfOF678miVe1hgUrwub2BCL2VK5KdOJif37jOtDV_6XbKHVnjAfNpVTthLuwBjpj5GujkyMQWLzdydIXlelk1-yXmo_tAr3Bl7twkPVNoZhRdrx-v4eoZSGh7lI6XrCNQJsZfKOM2chpMKXQ_q6tfjXTxNGp8bkhTnY1I3rGvUF7Kjmb0k41NRqA"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-primary-container text-on-primary-container rounded-full shadow-[0_4px_12px_rgba(194,24,91,0.3)] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-6">
+<!-- Sticky Tabs -->
+<nav class="sticky top-20 z-40 flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-primary text-white font-semibold text-sm shadow-md">
+                Por hacer 📝
+            </button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant text-sm bg-surface-container-low/50">
+                Confirmadas 📅
+            </button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant text-sm bg-surface-container-low/50">
+                Realizadas ✅
+            </button>
+</nav>
+<!-- Activity List -->
+<section class="space-y-4 mt-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-low flex items-center p-4 rounded-[20px] transition-all hover:bg-surface-container active:scale-[0.98] relative overflow-hidden group">
+<img alt="Cena romántica" class="w-20 h-20 rounded-[12px] object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEcx12lFHqpu77B-7VSmYau4Pr56c4tf2XTJALC-SqzAxXbGRoFHBKEeiMcQbrzMDqJqYq1ypthi8i-jC9RgnT6Pm1WiDE5TJrbzPB5TuWTl7jxuKYs2Oisp5fhKe5IZCXDSp8HfIHQYoDPf0si5kgcpgLkyOKywgYz_vYGP7Tlo57SPReD49sov3pp1I8vyAlYarSg1QEG9JHoshbys2EN_5EWp2YxQGkyxdUXAP3QdtYVyiEDaf_IleK3zHhkXfZmqk-6B7GZ4w"/>
+<div class="ml-4 flex-grow">
+<h3 class="font-serif-alt text-xl font-medium text-on-surface leading-tight">Cena romántica</h3>
+<div class="mt-2">
+<span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-semibold bg-secondary-container/30 text-secondary border border-secondary/20">
+                            Media
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant/60 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low flex items-center p-4 rounded-[20px] transition-all hover:bg-surface-container active:scale-[0.98] relative overflow-hidden group">
+<img alt="Escapada al campo" class="w-20 h-20 rounded-[12px] object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7QRct2M2O7bBL61AjxdAzqrEN_odX_BHK1tpPlBJ2WEPB5dDpzAPwyPAAcNY5GHDM2Grv3cEb0ul37Gv4636bfDIMj2mJnYyzxHGkqoX72S16oCJ4M-nWnPKd5PM6i3wE_a0TE2QypK4ybUDe4WTT2yvh846p3qccRBnpgWkj-DhrMJ2yGiWUPoyuPk-URUAcJw42E_ubomb3lA0xi6BLop94FSDnaVgh1V_o6BCuII7Cdlj5usjfuQbAGtLVCNHVLc1y2Sixwzs"/>
+<div class="ml-4 flex-grow">
+<h3 class="font-serif-alt text-xl font-medium text-on-surface leading-tight">Escapada al campo</h3>
+<div class="mt-2">
+<span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-semibold bg-primary-container/20 text-primary border border-primary/20">
+                            Alta
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant/60 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low flex items-center p-4 rounded-[20px] transition-all hover:bg-surface-container active:scale-[0.98] relative overflow-hidden group">
+<img alt="Museo de arte" class="w-20 h-20 rounded-[12px] object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQKiK6FbLn8rE8fxri2qN8XTGaK1sKEYyDWPXoXEeV-RwhUSH67EQgQqR3eCLuB3QizeIrfP2aax-oDn2PYkoxmN6EQI1CUbsMbQEG1Tj7tI7kCL9z-vKuudnqKAiTQMl5zWUDIvtrvlaMC35IIa1MFcyhjJry-vXrhyO31jdBKlWpoqqICAfQQ6sDK_voM7LTJYSx_2-ijYOwlXcSmel-4LzvrQ7grbzv5t4vzQQRGCgNnwC8g1b4NyqpXu4E7tp4hABrSLiP30M"/>
+<div class="ml-4 flex-grow">
+<h3 class="font-serif-alt text-xl font-medium text-on-surface leading-tight">Museo de arte</h3>
+<div class="mt-2">
+<span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-semibold bg-surface-container-highest text-on-surface-variant border border-outline-variant/15">
+                            Baja
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant/60 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</section>
+<!-- Empty State Placeholder -->
+<section class="mt-16 flex flex-col items-center text-center px-8">
+<div class="w-20 h-20 flex items-center justify-center rounded-full bg-surface-container mb-6">
+<span class="material-symbols-outlined text-4xl text-primary/40" style="font-variation-settings: 'opsz' 48;">favorite</span>
+</div>
+<h4 class="font-serif-alt text-2xl text-on-surface mb-2">Aún no hay planes</h4>
+<p class="font-body text-on-surface-variant text-sm mb-6">Agregá una actividad para empezar ✨</p>
+<button class="w-12 h-12 flex items-center justify-center bg-primary-container text-on-primary-container rounded-full shadow-lg active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined">add</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (Updated to COMPONENTS_12) -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-8 pb-4 bg-[#1F1924]/60 backdrop-blur-xl rounded-t-[2rem] z-50 shadow-[0px_20px_40px_rgba(255,177,194,0.08)]">
+<!-- Home (Active) -->
+<button class="flex items-center justify-center text-[#C2185B] bg-[#C2185B]/10 rounded-full p-4 scale-110 active:duration-200 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</button>
+<!-- Calendar (Inactive) -->
+<button class="flex items-center justify-center text-[#FFB1C2]/50 p-4 hover:text-[#C2185B]/80 transition-all active:duration-200">
+<span class="material-symbols-outlined">calendar_month</span>
+</button>
+<!-- Profile (Inactive) -->
+<button class="flex items-center justify-center text-[#FFB1C2]/50 p-4 hover:text-[#C2185B]/80 transition-all active:duration-200">
+<span class="material-symbols-outlined">person</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confirmar Plan - The Nocturne Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&amp;family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@400;500;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffd9df",
+              "outline-variant": "#594045",
+              "on-tertiary-fixed": "#221140",
+              "surface": "#16111c",
+              "on-tertiary-fixed-variant": "#4f3e6f",
+              "surface-variant": "#39323e",
+              "on-error-container": "#ffdad6",
+              "on-background": "#eadfee",
+              "inverse-on-surface": "#342e39",
+              "tertiary-fixed-dim": "#d2bdf7",
+              "on-tertiary": "#382757",
+              "on-primary-container": "#ffd9df",
+              "tertiary-fixed": "#ebddff",
+              "tertiary-container": "#6d5c8f",
+              "secondary-container": "#755400",
+              "inverse-surface": "#eadfee",
+              "surface-container-highest": "#39323e",
+              "outline": "#a8898e",
+              "on-surface": "#eadfee",
+              "on-primary-fixed-variant": "#8f003f",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#271900",
+              "error": "#ffb4ab",
+              "primary-container": "#c2185b",
+              "background": "#16111c",
+              "on-surface-variant": "#e1bec4",
+              "on-secondary": "#412d00",
+              "surface-tint": "#ffb1c2",
+              "secondary-fixed": "#ffdea6",
+              "on-primary": "#66002b",
+              "primary": "#ffb1c2",
+              "surface-bright": "#3d3742",
+              "on-tertiary-container": "#ebddff",
+              "inverse-primary": "#b90c55",
+              "on-secondary-container": "#f9ca71",
+              "surface-container-lowest": "#110c16",
+              "surface-container-low": "#1f1924",
+              "secondary-fixed-dim": "#eec068",
+              "on-secondary-fixed-variant": "#5d4200",
+              "surface-container-high": "#2e2833",
+              "secondary": "#eec068",
+              "surface-container": "#231d28",
+              "on-primary-fixed": "#3f0018",
+              "primary-fixed-dim": "#ffb1c2",
+              "on-error": "#690005",
+              "tertiary": "#d2bdf7",
+              "surface-dim": "#16111c"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "serif": ["Cormorant Garamond"],
+              "body": ["Manrope"],
+              "label": ["Manrope"],
+              "sans": ["DM Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grainy-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 99;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface overflow-hidden">
+<div class="grainy-overlay"></div>
+<!-- Background Content (Simulated Map/Browse Screen) -->
+<main class="min-h-screen w-full relative p-6 pt-24 opacity-40">
+<header class="mb-8">
+<h1 class="font-serif italic text-4xl text-secondary mb-2">Explorar</h1>
+<p class="text-on-surface-variant font-light tracking-wide">Descubre experiencias seleccionadas.</p>
+</header>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-[3/4] rounded-lg bg-surface-container-high overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Dimly lit cozy cocktail bar interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXeuAJ8G1ssnibLStVgK5KcoOneNNSSNHNuXzheFUXj8r2wLI13MTmZjJTYw0plZnDXZURWnxhRbc9UJKcRJNO8Kjy2NMe21ujyt3WLf9TB_3q-sgfl_rbrUDDsmfKR3hGs28AzQlFcSDlacUCIT1etJnVbwENn0VWcD3fz13OGnLd3NRgtrkLkdKBP7lD78yzLTTqAd3aDfwvVcL_SF_L1N5g2ihcV4zC5IjWuYEHSBCsJYd-o9rbptbX_usp2iz5I6RmkxF2nXk"/>
+</div>
+<div class="aspect-[3/4] rounded-lg bg-surface-container-high overflow-hidden shadow-lg mt-8">
+<img class="w-full h-full object-cover" data-alt="Close up of artisanal coffee pour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbmkZHtJyoGa7DVMcDZ4nZZ9g3Q8rS7zLLaHAmAR_8PtHSYlPe0Z88p-PZv0bQFngKWmlO9b1oPWGJhyiQzCQET0lnj2149BSHphEHc-MeZbx1t60G2KvEY7MDOcts0bWBpDMS2CaEMF69iQXxK0ofIVaeBfs9tZgokUJTIZryu0AqERPuzPymxfZo-CX-SDYHLicVO1jMsu5Pfy39MBVKVaxyo2M8TbXJZD7GACBa-_26-55trDpKD9s1Z8pk78P1ILpkOg1SNJk"/>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet Overlay -->
+<div class="fixed inset-0 bg-surface/80 backdrop-blur-sm z-40"></div>
+<!-- Bottom Sheet Component -->
+<section class="fixed bottom-0 left-0 w-full z-50 bg-[#1E1530] rounded-t-[2.5rem] shadow-[0px_-20px_60px_rgba(22,17,28,0.8)] border-t border-outline-variant/10">
+<!-- Sheet Handle -->
+<div class="flex justify-center pt-4 pb-2">
+<div class="w-12 h-1.5 bg-tertiary-fixed-dim/30 rounded-full"></div>
+</div>
+<div class="px-8 pb-10">
+<!-- Header Area -->
+<div class="text-center mb-8">
+<h2 class="font-serif italic text-3xl text-tertiary-fixed-dim mb-6">Confirmar plan</h2>
+<!-- Selected Activity Card -->
+<div class="bg-surface-container-lowest/40 p-4 rounded-xl flex items-center gap-4 border border-outline-variant/5">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling woman at a cafe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzjUYGQtPJYLxkOw1M2TLCoaANlPVqVhfGnI-e1ZMmFONlny0Gbi-ASZIojxvTJR_SZ0dHhyxErmo1nl2BFJPgpvnEk0IOVMkMEEx5Wb8KkhQCgQJFEdhNSFekZwSgRqKoDKOU7u3nCE6KiaC7KbU67Hn2p8AdgDw85S2WzlvnxkTWEJ7sbz8yUc1as2mneRpheuOb4s5NhoG61brFYEDaReGMx6ziKXMUSn2r7n4DdDoBL4a6bKMaS5Vmud1Ls-d3IqWbE1FHY_M"/>
+<div class="absolute inset-0 bg-primary/20"></div>
+</div>
+<div class="flex-1 text-left">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface text-lg">Valentina</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="text-on-surface-variant text-sm font-sans uppercase tracking-tighter">Plan Editorial: Café y Arte</p>
+</div>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="space-y-4 mb-8">
+<!-- Date Picker -->
+<div class="group">
+<label class="block text-xs font-bold uppercase tracking-widest text-outline mb-2 ml-1">Fecha</label>
+<div class="flex items-center gap-3 bg-surface-container-lowest border border-outline-variant/10 rounded-full px-5 py-4 focus-within:border-primary/40 focus-within:shadow-[0_0_15px_rgba(194,24,91,0.1)] transition-all">
+<span class="material-symbols-outlined text-tertiary" data-icon="calendar_today">calendar_today</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant/60 font-medium" placeholder="Elegí una fecha" type="text"/>
+</div>
+</div>
+<!-- Time Picker -->
+<div class="group">
+<label class="block text-xs font-bold uppercase tracking-widest text-outline mb-2 ml-1">Horario</label>
+<div class="flex items-center gap-3 bg-surface-container-lowest border border-outline-variant/10 rounded-full px-5 py-4 focus-within:border-primary/40 focus-within:shadow-[0_0_15px_rgba(194,24,91,0.1)] transition-all">
+<span class="material-symbols-outlined text-tertiary" data-icon="schedule">schedule</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant/60 font-medium" placeholder="Elegí un horario" type="text"/>
+</div>
+</div>
+<!-- Location Search -->
+<div class="group">
+<label class="block text-xs font-bold uppercase tracking-widest text-outline mb-2 ml-1">Ubicación</label>
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-4 focus-within:border-primary/40 transition-all">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="location_on">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant/60 font-medium" placeholder="Buscar lugar..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-secondary text-sm px-4 py-2 rounded-full flex items-center gap-2 border border-secondary/10 transition-colors">
+                                Café Martínez, Palermo <span class="text-xs">📍</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full py-5 rounded-full bg-gradient-to-r from-[#9B1D6A] to-primary-container text-on-primary-container font-bold text-lg shadow-[0_10px_30px_rgba(155,29,106,0.3)] active:scale-[0.98] transition-all flex justify-center items-center gap-3">
+                Confirmar plan 
+                <span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+</button>
+</div>
+</section>
+<!-- Top App Bar (Shared Component Style) -->
+<header class="fixed top-0 w-full z-50 bg-[#16111C]/60 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center text-[#C2185B]">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</div>
+<div class="text-2xl font-serif italic text-[#EEC068]">Nuestros Planes</div>
+<div class="flex items-center text-[#C2185B]">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<!-- Bottom Nav Bar (Suppressed as per focused task intent) -->
+</body></html>

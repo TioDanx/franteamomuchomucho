@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grainy-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3ExternalIcon%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-headline { font-family: 'Noto Serif', serif; }
+        .font-sans-ui { font-family: 'DM Sans', sans-serif; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffd9df",
+              "outline-variant": "#594045",
+              "on-tertiary-fixed": "#221140",
+              "surface": "#16111c",
+              "on-tertiary-fixed-variant": "#4f3e6f",
+              "surface-variant": "#39323e",
+              "on-error-container": "#ffdad6",
+              "on-background": "#eadfee",
+              "inverse-on-surface": "#342e39",
+              "tertiary-fixed-dim": "#d2bdf7",
+              "on-tertiary": "#382757",
+              "on-primary-container": "#ffd9df",
+              "tertiary-fixed": "#ebddff",
+              "tertiary-container": "#6d5c8f",
+              "secondary-container": "#755400",
+              "inverse-surface": "#eadfee",
+              "surface-container-highest": "#39323e",
+              "outline": "#a8898e",
+              "on-surface": "#eadfee",
+              "on-primary-fixed-variant": "#8f003f",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#271900",
+              "error": "#ffb4ab",
+              "primary-container": "#c2185b",
+              "background": "#16111c",
+              "on-surface-variant": "#e1bec4",
+              "on-secondary": "#412d00",
+              "surface-tint": "#ffb1c2",
+              "secondary-fixed": "#ffdea6",
+              "on-primary": "#66002b",
+              "primary": "#ffb1c2",
+              "surface-bright": "#3d3742",
+              "on-tertiary-container": "#ebddff",
+              "inverse-primary": "#b90c55",
+              "on-secondary-container": "#f9ca71",
+              "surface-container-lowest": "#110c16",
+              "surface-container-low": "#1f1924",
+              "secondary-fixed-dim": "#eec068",
+              "on-secondary-fixed-variant": "#5d4200",
+              "surface-container-high": "#2e2833",
+              "secondary": "#eec068",
+              "surface-container": "#231d28",
+              "on-primary-fixed": "#3f0018",
+              "primary-fixed-dim": "#ffb1c2",
+              "on-error": "#690005",
+              "tertiary": "#d2bdf7",
+              "surface-dim": "#16111c"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32 overflow-x-hidden">
+<div class="fixed inset-0 grainy-overlay z-50"></div>
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 w-full bg-[#16111C]/80 backdrop-blur-xl shadow-[0px_20px_40px_rgba(255,177,194,0.08)]">
+<button class="w-10 h-10 flex items-center justify-center rounded-full scale-95 active:opacity-80 transition-all text-[#C2185B] dark:text-[#FFB1C2] hover:bg-[#1F1924] transition-colors duration-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-2xl font-serif italic text-[#EEC068]">Nuestros Planes</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full scale-95 active:opacity-80 transition-all text-[#C2185B] dark:text-[#FFB1C2] hover:bg-[#1F1924] transition-colors duration-300">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</header>
+<main class="pt-20 max-w-2xl mx-auto px-4 md:px-0">
+<!-- Hero Section -->
+<section class="relative mt-4 mb-8 overflow-hidden rounded-lg">
+<div class="aspect-[4/5] md:aspect-[16/9] w-full relative">
+<img alt="" class="w-full h-full object-cover" data-alt="Romantic rooftop dinner with city lights at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADiBo2-4X9qqK-7tgT8jC1oRFoobghb7qqJsIcDGiT9s2MzYLq0PXPkR9i1I00XUz9xG_KlMwedG97Z-tJoIK9EmBFXPIB68fWRbur4hyBhmrMhvWzhDMyskj26Z_BSOgUIirNL1NDMv9TnoN0ITXFcAXhgVKNfodCexLrIQ2FzWI0Ei8FKO_on6ZiUYu5mNo4EXfoEYnZXdgOf3NNY6cFvG76hG3ZbVvDm4LYC8F1OumEqPzwbHsYdZOUsBYg6kCYsMVHLpkBYmE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-secondary/10"></div>
+<!-- Status Badge -->
+<div class="absolute top-6 right-6 bg-secondary-container/90 backdrop-blur-md px-4 py-2 rounded-full border border-secondary/20 shadow-lg">
+<span class="text-on-secondary-container font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                        Realizada ✨
+                    </span>
+</div>
+<!-- Floating Header Content -->
+<div class="absolute bottom-8 left-8 right-8">
+<span class="bg-secondary/20 backdrop-blur-sm text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-secondary/15 inline-block mb-4">
+                        Realizada el 12 de abril
+                    </span>
+<h2 class="text-4xl md:text-5xl font-serif text-white leading-tight">Cena bajo las estrellas</h2>
+</div>
+</div>
+</section>
+<!-- Read-only Info Grid -->
+<section class="grid grid-cols-2 gap-4 mb-12 px-2">
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/5">
+<p class="text-[10px] uppercase tracking-widest text-outline mb-2 font-bold">Ubicación</p>
+<div class="flex items-center gap-3 text-on-surface-variant opacity-80">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<span class="text-sm font-medium">Terraza El Mirador</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/5">
+<p class="text-[10px] uppercase tracking-widest text-outline mb-2 font-bold">Compañía</p>
+<div class="flex items-center gap-3 text-on-surface-variant opacity-80">
+<span class="material-symbols-outlined text-secondary">favorite</span>
+<span class="text-sm font-medium">Solo nosotros</span>
+</div>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="mb-12">
+<div class="flex items-center gap-4 mb-8 px-2">
+<h3 class="text-2xl font-serif text-on-surface whitespace-nowrap">Reseñas</h3>
+<div class="h-[1px] w-full bg-gradient-to-r from-secondary/40 to-transparent"></div>
+</div>
+<div class="space-y-6">
+<!-- Review Card 1 -->
+<div class="bg-surface-container p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-secondary/20">
+<img alt="" class="w-full h-full object-cover" data-alt="Portrait of a woman with a warm smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIVNEB5TqPzVRjCn40fP4f60GeywCl2usbTU6qviIkIN1l7IxjUi7OewnlmMa2UkIk74eYHFZZ_pu7D-jOSmqFYZd5aJSaAf8igaCCARFyqs3kNgvSU_loz5UVJ9zJ3JvO4CrnaIC_KuKkDMSR4EMjb-0nJchZcwEhaoka7d_nHqUbGhuhs12HkPYvUzuIvt2itiuxjAHT7-mMeuamMOBe5FJ2aCdPF6LWVOiYnqXf2k183E2vIhSWpMGT4s-hZccq9vFDBb2DEUY"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Sofía García</p>
+<p class="text-[10px] text-outline uppercase tracking-widest">Hace 2 días</p>
+</div>
+</div>
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-serif italic text-lg leading-relaxed">
+                        "Fue una noche mágica. La atención al detalle en la terraza y la selección de vinos superó todas nuestras expectativas."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Photo Gallery -->
+<section class="mb-12 px-2">
+<h3 class="text-2xl font-serif text-on-surface mb-6">Fotos del plan 📸</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-lg overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close up of wine glasses on a table with fairy lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTIXeraamTZLM6hlxTiKqEbsHORumBRfih91C6vxnxluQ4jO40mf_LlnVkjYNARLiGFVPSPE4iGYb6QLdd1UDBvVujk5nTo4ZsrXBoC32m_syKzGVlsGkLc28SyA0DZsbZtMDuPGRixsQdazxoRDhZZdjyCRrHFUUupb-9KALI3-gZ5smABDH2QUJhkltRO7hiLBybeAHoRVx-o0t_2xAwwJlmBk0ZivFhWKpb97AfGVtYVGQcyM_iLl7EAQyaNOCXdeJxpQVTswQ"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cocktails on a wooden bar counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYzstBv2iiYkQsK3YffJjuxauRO9ca2fKFeZa266XY4m3sUIoa2yoRN73GsC4lXTGMhoiuw78bhgf9baK1Et8aJVG7CJiNYkzXA_-Qn4nEbG3GV83gak6cklqvDn_1ek0K5dT46a6T9XoebalnpfhvEi-kh2n14lLCUVRm4q5JLkUKRUuFartRm5VHIcGuRXC-LKfcfUkrsPPjzLKTa7IS_4HnAE2QMf-DCtAJMbVHXJp4clQXXedxb58560vV-dkuWueqKwDl7tM"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Gourmet dish plated beautifully" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPEo3gSbEjDMw4pmpeIS5A6nBfvHf4LMYU5y5kCcqxSx8POeW_TadWLu8TIgzzdnDjv7VgANET0XhSA2uedDoBrozKJQRjEg9V_CJ98sDciOcLFSsNJFRz008C_hlJZPuJ9gop_F3taMyLFXMotzoJMp6V0k--3WRKcZbvuTq8TKjqiT--XpXiTXcnowZEt-g1F1Cc_W92fLCB5W2jCGBECY954DwvM4Ix6wuMxm4Ia0iMEQ4vTNFwbX6xQHJRYXhrNHe8LZJnglc"/>
+</div>
+<!-- Add Photo Cell -->
+<button class="aspect-square rounded-lg border-2 border-dashed border-secondary/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary/5 transition-colors group">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add_a_photo</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">+ Foto</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Refactored per {{DATA:COMPONENTS:COMPONENTS_12}}) -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-8 pb-4 bg-[#1F1924]/60 backdrop-blur-xl rounded-t-[2rem] shadow-[0px_20px_40px_rgba(255,177,194,0.08)] z-50">
+<a class="flex items-center justify-center text-[#C2185B] bg-[#C2185B]/10 rounded-full p-4 transition-transform scale-110 active:duration-200 hover:text-[#C2185B]/80 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex items-center justify-center text-[#FFB1C2]/50 p-4 transition-transform hover:text-[#C2185B]/80 transition-all active:duration-200" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+</a>
+<a class="flex items-center justify-center text-[#FFB1C2]/50 p-4 transition-transform hover:text-[#C2185B]/80 transition-all active:duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>
