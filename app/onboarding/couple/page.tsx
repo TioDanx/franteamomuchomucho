@@ -1,7 +1,6 @@
 "use client"
 
-export const dynamic = "force-dynamic"
-
+import { Suspense } from "react"
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
@@ -17,7 +16,7 @@ interface JoinForm {
   code: string
 }
 
-export default function CouplePage() {
+function CouplePageInner() {
   const { user, firebaseUser } = useAuth()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -320,5 +319,17 @@ export default function CouplePage() {
         </AnimatePresence>
       </div>
     </div>
+  )
+}
+
+export default function CouplePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-dvh flex items-center justify-center bg-background">
+        <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      </div>
+    }>
+      <CouplePageInner />
+    </Suspense>
   )
 }
