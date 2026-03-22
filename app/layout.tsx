@@ -19,6 +19,12 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Nuestros Planes",
   description: "Tu espacio compartido",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Nuestros Planes",
+  },
 }
 
 // Inline script to apply theme before first paint (avoids flash)
