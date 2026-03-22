@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { addActivity, updateActivity } from "@/lib/firestore/activities"
 import { uploadHeroPhoto } from "@/lib/firestore/gallery"
+import { notifyPartner } from "@/lib/notifications"
 import type { ImportanceLevel } from "@/lib/types"
 
 interface FormValues {
@@ -18,6 +19,7 @@ interface Props {
   onClose: () => void
   coupleId: string
   uid: string
+  senderName: string
   // Edit mode
   activityId?: string
   initialValues?: { name: string; photoUrl: string; importance: ImportanceLevel }
@@ -44,7 +46,7 @@ const importanceOptions: { value: ImportanceLevel; label: string; classes: strin
   },
 ]
 
-export function AddActivityModal({ open, onClose, coupleId, uid, activityId, initialValues }: Props) {
+export function AddActivityModal({ open, onClose, coupleId, uid, senderName, activityId, initialValues }: Props) {
   const isEditMode = Boolean(activityId && initialValues)
   const [photoFile, setPhotoFile] = useState<File | null>(null)
   const [photoPreview, setPhotoPreview] = useState<string | null>(null)
@@ -108,6 +110,7 @@ export function AddActivityModal({ open, onClose, coupleId, uid, activityId, ini
         }
 
         toast.success("¡Plan actualizado!")
+        notifyPartner({ coupleId, senderUid: uid, senderName, event: "activity_updated", activityName: name.trim(), activityId })
       } else {
         // Create mode
         setUploadStep("Guardando plan…")
@@ -126,6 +129,7 @@ export function AddActivityModal({ open, onClose, coupleId, uid, activityId, ini
         }
 
         toast.success("¡Plan agregado!")
+        notifyPartner({ coupleId, senderUid: uid, senderName, event: "activity_created", activityName: name.trim(), activityId: newId })
       }
 
       reset()

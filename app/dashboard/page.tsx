@@ -8,6 +8,8 @@ import { useAuth } from "@/lib/hooks/useAuth"
 import { useActivities } from "@/lib/hooks/useActivities"
 import { useCountdown } from "@/lib/hooks/useCountdown"
 import { getCountdown, setCountdown, deleteCountdown } from "@/lib/firestore/config"
+import { notifyPartner } from "@/lib/notifications"
+import { usePushNotifications } from "@/lib/hooks/usePushNotifications"
 import { CountdownTimer } from "@/components/activity/CountdownTimer"
 import { ActivityCard } from "@/components/activity/ActivityCard"
 import { AddActivityModal } from "@/components/modals/AddActivityModal"
@@ -29,6 +31,16 @@ export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterImportance, setFilterImportance] = useState<ImportanceLevel | null>(null)
   const router = useRouter()
+  const { permission, requestPermission } = usePushNotifications(user?.coupleId ?? null, firebaseUser?.uid ?? null)
+  const [notifDismissed, setNotifDismissed] = useState(() => {
+    if (typeof window === "undefined") return false
+    return localStorage.getItem("notif-dismissed") === "1"
+  })
+
+  function dismissNotifBanner() {
+    localStorage.setItem("notif-dismissed", "1")
+    setNotifDismissed(true)
+  }
 
   // Countdown state — undefined = loading, null = no date set
   const [countdownConfig, setCountdownConfig] = useState<CountdownConfig | null | undefined>(undefined)
@@ -55,16 +67,21 @@ export default function DashboardPage() {
 
   async function handleSaveCountdown() {
     if (!user?.coupleId || !firebaseUser || !cdDateStr) return
+    const isNew = countdownConfig === null
     const ts = Timestamp.fromDate(new Date(cdDateStr))
     await setCountdown(user.coupleId, firebaseUser.uid, ts)
     setCountdownConfig({ targetDate: ts, updatedBy: firebaseUser.uid, updatedAt: Timestamp.now() })
     setCdOpen(false)
+    if (isNew) {
+      notifyPartner({ coupleId: user.coupleId, senderUid: firebaseUser.uid, senderName: user.displayName, event: "countdown_created" })
+    }
   }
 
   async function handleDeleteCountdown() {
-    if (!user?.coupleId) return
+    if (!user?.coupleId || !firebaseUser) return
     await deleteCountdown(user.coupleId)
     setCountdownConfig(null)
+    notifyPartner({ coupleId: user.coupleId, senderUid: firebaseUser.uid, senderName: user.displayName, event: "countdown_deleted" })
   }
 
   function openCdSheet() {
@@ -136,8 +153,30 @@ export default function DashboardPage() {
         </div>
       </header>
 
+      {/* Notification permission banner */}
+      {permission === "default" && !notifDismissed && (
+        <div className="px-4 pt-20">
+          <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-2xl px-4 py-3">
+            <span className="text-xl">🔔</span>
+            <p className="flex-1 text-on-surface text-sm">Activá las notificaciones para saber cuando tu pareja actualiza algo</p>
+            <button
+              onClick={() => { requestPermission(); dismissNotifBanner() }}
+              className="text-primary text-xs font-bold whitespace-nowrap"
+            >
+              Activar
+            </button>
+            <button
+              onClick={() => dismissNotifBanner()}
+              className="text-on-surface-variant text-xs"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Countdown section */}
-      <div className="px-4 pt-20 pb-4">
+      <div className={`px-4 pb-4 ${permission === "default" && !notifDismissed ? "pt-3" : "pt-20"}`}>
         {countdownConfig === undefined ? null : countdownConfig === null || countdown.isPast ? (
           <button
             onClick={openCdSheet}
@@ -304,6 +343,7 @@ export default function DashboardPage() {
         onClose={() => setAddOpen(false)}
         coupleId={user.coupleId!}
         uid={firebaseUser.uid}
+        senderName={user.displayName}
       />
 
       <ProfileSidebar

@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import { useAuth } from "@/lib/hooks/useAuth"
 import { getActivity, completeActivity, deleteActivity } from "@/lib/firestore/activities"
 import { setReview, deleteReview, subscribeReviews } from "@/lib/firestore/reviews"
+import { notifyPartner } from "@/lib/notifications"
 import { CountdownTimer } from "@/components/activity/CountdownTimer"
 import { ImportanceBadge } from "@/components/activity/ImportanceBadge"
 import { StarRating } from "@/components/activity/StarRating"
@@ -64,6 +65,9 @@ export default function ActivityDetailPage() {
       const updated = await getActivity(coupleId, id)
       setActivity(updated)
       toast.success("¡Actividad completada!")
+      if (firebaseUser && user && activity) {
+        notifyPartner({ coupleId, senderUid: firebaseUser.uid, senderName: user.displayName, event: "activity_completed", activityName: activity.name, activityId: id })
+      }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "No se pudo completar")
     } finally {
@@ -89,6 +93,7 @@ export default function ActivityDetailPage() {
     if (draftRating === 0 || !coupleId || !firebaseUser || !user) return
     setSaving(true)
     try {
+      const isEdit = reviewMode === "edit"
       await setReview(
         coupleId, id, firebaseUser.uid,
         { rating: draftRating, comment: draftComment },
@@ -96,6 +101,7 @@ export default function ActivityDetailPage() {
         user.photoURL ?? firebaseUser.photoURL ?? undefined
       )
       setReviewMode("view")
+      notifyPartner({ coupleId, senderUid: firebaseUser.uid, senderName: user.displayName, event: isEdit ? "review_updated" : "review_created", activityName: activity?.name, activityId: id })
     } catch {
       toast.error("No se pudo guardar la reseña")
     } finally {
@@ -508,7 +514,7 @@ export default function ActivityDetailPage() {
       )}
 
       {/* Edit confirmed modal */}
-      {activity.status === "confirmed" && coupleId && (
+      {activity.status === "confirmed" && coupleId && firebaseUser && user && (
         <ConfirmActivityModal
           open={editConfirmOpen}
           onClose={() => {
@@ -517,26 +523,29 @@ export default function ActivityDetailPage() {
           }}
           activity={activity}
           coupleId={coupleId}
+          senderUid={firebaseUser.uid}
+          senderName={user.displayName}
           mode="edit"
         />
       )}
 
       {/* Confirm modal */}
-      {activity.status === "todo" && (
+      {activity.status === "todo" && firebaseUser && user && (
         <ConfirmActivityModal
           open={confirmOpen}
           onClose={() => {
             setConfirmOpen(false)
-            // Refresh activity after confirm
             if (coupleId) getActivity(coupleId, id).then(setActivity)
           }}
           activity={activity}
           coupleId={coupleId!}
+          senderUid={firebaseUser.uid}
+          senderName={user.displayName}
         />
       )}
 
       {/* Edit modal */}
-      {coupleId && firebaseUser && (
+      {coupleId && firebaseUser && user && (
         <AddActivityModal
           open={editOpen}
           onClose={() => {
@@ -545,6 +554,7 @@ export default function ActivityDetailPage() {
           }}
           coupleId={coupleId}
           uid={firebaseUser.uid}
+          senderName={user.displayName}
           activityId={id}
           initialValues={{
             name: activity.name,

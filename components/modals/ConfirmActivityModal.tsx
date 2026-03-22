@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { Timestamp } from "firebase/firestore"
 import { confirmActivity, updateConfirmedActivity } from "@/lib/firestore/activities"
+import { notifyPartner } from "@/lib/notifications"
 import type { Activity } from "@/lib/types"
 
 interface FormValues {
@@ -18,6 +19,8 @@ interface Props {
   onClose: () => void
   activity: Activity
   coupleId: string
+  senderUid: string
+  senderName: string
   mode?: "confirm" | "edit"
 }
 
@@ -44,7 +47,7 @@ function loadGoogleMaps(cb: () => void) {
   document.head.appendChild(s)
 }
 
-export function ConfirmActivityModal({ open, onClose, activity, coupleId, mode = "confirm" }: Props) {
+export function ConfirmActivityModal({ open, onClose, activity, coupleId, senderUid, senderName, mode = "confirm" }: Props) {
   const [saving, setSaving] = useState(false)
   const [addressInput, setAddressInput] = useState("")
   const [locationCoords, setLocationCoords] = useState<{ lat: number; lng: number } | null>(null)
@@ -130,9 +133,11 @@ export function ConfirmActivityModal({ open, onClose, activity, coupleId, mode =
       if (mode === "edit") {
         await updateConfirmedActivity(coupleId, activity.id, details)
         toast.success("¡Plan actualizado!")
+        notifyPartner({ coupleId, senderUid, senderName, event: "activity_updated", activityName: activity.name, activityId: activity.id })
       } else {
         await confirmActivity(coupleId, activity.id, details)
         toast.success("¡Plan confirmado!")
+        notifyPartner({ coupleId, senderUid, senderName, event: "activity_confirmed", activityName: activity.name, activityId: activity.id })
       }
       reset()
       setAddressInput("")
