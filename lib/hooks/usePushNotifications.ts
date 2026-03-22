@@ -3,18 +3,26 @@
 import { useEffect, useState } from "react";
 import { savePushSubscription } from "@/lib/firestore/notifications";
 
+function isPushSupported() {
+  return (
+    typeof window !== "undefined" &&
+    "Notification" in window &&
+    "serviceWorker" in navigator &&
+    "PushManager" in window
+  );
+}
+
 export function usePushNotifications(coupleId: string | null, uid: string | null) {
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window) {
+    if (isPushSupported()) {
       setPermission(Notification.permission);
     }
   }, []);
 
   async function requestPermission() {
-    if (!coupleId || !uid) return;
-    if (!("Notification" in window) || !("serviceWorker" in navigator)) return;
+    if (!coupleId || !uid || !isPushSupported()) return;
 
     const result = await Notification.requestPermission();
     setPermission(result);
@@ -35,12 +43,10 @@ export function usePushNotifications(coupleId: string | null, uid: string | null
   }
 
   useEffect(() => {
-    if (!coupleId || !uid) return;
-    if (!("serviceWorker" in navigator)) return;
+    if (!coupleId || !uid || !isPushSupported()) return;
 
     navigator.serviceWorker.register("/sw.js").catch(() => {});
 
-    // Auto-save subscription if already granted
     if (Notification.permission === "granted") {
       navigator.serviceWorker.ready.then(async (reg) => {
         const sub = await reg.pushManager.getSubscription();

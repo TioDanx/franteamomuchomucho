@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { updateUserDisplayName } from "@/lib/firestore/users"
 import { getCouple } from "@/lib/firestore/couples"
+import { usePushNotifications } from "@/lib/hooks/usePushNotifications"
 import type { UserProfile } from "@/lib/types"
 import type { User } from "firebase/auth"
 
@@ -31,6 +32,7 @@ export function ProfileSidebar({ open, onClose, user, firebaseUser, onSignOut, o
   const [editingName, setEditingName] = useState(false)
   const [saving, setSaving] = useState(false)
   const [partner, setPartner] = useState<PartnerInfo | null>(null)
+  const { permission, requestPermission } = usePushNotifications(user.coupleId ?? null, firebaseUser.uid)
 
   useEffect(() => {
     if (!open || !user.coupleId) return
@@ -199,6 +201,29 @@ export function ProfileSidebar({ open, onClose, user, firebaseUser, onSignOut, o
                   </form>
                 ) : (
                   <p className="font-serif text-lg text-on-surface">{user.displayName}</p>
+                )}
+              </div>
+              {/* Notifications */}
+              <div className="bg-surface-container-low rounded-2xl p-5">
+                <p className="text-xs font-bold uppercase tracking-widest text-outline mb-4">Notificaciones</p>
+                {permission === "granted" && (
+                  <div className="flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+                    <p className="text-on-surface-variant text-sm">Activadas</p>
+                  </div>
+                )}
+                {permission === "denied" && (
+                  <p className="text-on-surface-variant text-sm">
+                    Bloqueadas por el navegador. Para activarlas, permitilas desde la configuración del sitio.
+                  </p>
+                )}
+                {permission === "default" && (
+                  <button
+                    onClick={requestPermission}
+                    className="w-full py-2.5 rounded-full bg-primary-container text-on-primary-container text-sm font-semibold transition-all active:scale-95"
+                  >
+                    🔔 Activar notificaciones
+                  </button>
                 )}
               </div>
             </div>
