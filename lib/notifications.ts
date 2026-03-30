@@ -64,12 +64,16 @@ export async function notifyPartner({
   activityId,
 }: NotifyPartnerArgs) {
   try {
+    const { getPartnerSubscription } = await import("@/lib/firestore/notifications");
+    const subscription = await getPartnerSubscription(coupleId, senderUid);
+    if (!subscription) return;
+
     const { title, body } = MESSAGES[event](senderName, activityName);
     const url = activityId ? `/activity/${activityId}` : "/dashboard";
     await fetch("/api/push-notify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ coupleId, senderUid, senderName, title, body, url }),
+      body: JSON.stringify({ subscription, title, body, url }),
     });
   } catch {
     // Best-effort, never throw

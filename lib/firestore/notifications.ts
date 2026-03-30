@@ -24,3 +24,15 @@ export async function getPushSubscription(
   if (!snap.exists()) return null;
   return snap.data().subscription as PushSubscriptionJSON;
 }
+
+export async function getPartnerSubscription(
+  coupleId: string,
+  senderUid: string
+): Promise<PushSubscriptionJSON | null> {
+  const coupleSnap = await getDoc(doc(db, "couples", coupleId));
+  if (!coupleSnap.exists()) return null;
+  const members: string[] = coupleSnap.data().members ?? [];
+  const partnerUid = members.find((m) => m !== senderUid);
+  if (!partnerUid) return null;
+  return getPushSubscription(coupleId, partnerUid);
+}

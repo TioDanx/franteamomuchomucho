@@ -70,6 +70,12 @@ service cloud.firestore {
       match /config/{docId} {
         allow read, write: if isMember(coupleId);
       }
+
+      // Push subscriptions: any member can read; only the owner can write their own
+      match /pushSubscriptions/{subUid} {
+        allow read: if isMember(coupleId);
+        allow write: if isMember(coupleId) && request.auth.uid == subUid;
+      }
     }
   }
 }
